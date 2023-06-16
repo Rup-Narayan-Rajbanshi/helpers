@@ -1,0 +1,18 @@
+# Go to specific commit
+	git reset --hard e9110bf5897e3738a240357f1c49f20f77499c79
+
+# go back to previous commit with files that are changed
+	git reset --soft "HEAD^"
+
+go back to previous commit hard:
+ git reset --hard HEAD~1	
+
+# Get diff file between two commits
+	git diff e9110bf5897e3738a240357f1c49f20f77499c7 e19d1742a5d9f356449894607c21d8858344b2f7 >> test.diff
+
+#rename git branch
+      -git branch -m new-branch-name
+
+
+undo the first commit
+ - git update-ref -d HEAD

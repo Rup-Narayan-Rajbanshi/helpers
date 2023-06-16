@@ -1,0 +1,6 @@
+# test files inside a specific folder:
+docker-compose exec web py.test --reuse-db apps/project/tests/test_mutations.py
+
+create app inside apps forlder in django:
+docker-compose exec server python manage.py startapp people apps/people
+

@@ -1,0 +1,12 @@
+sudo fuser -k 8000/tcp
+
+# celery info
+docker-compose exec serve celery -A main worker -l info
+
+buikd schhema 
+docker-compose exec server ./manage.py graphql_schema --out schema.graphql
+
+Load data : docker-compose exec server python manage.py loaddata fixtures/user.json
+Dumpdata : docker-compose exec server python manage.py dumpdata leave.leave_day > leave_day.json
+
+

@@ -1,0 +1,40 @@
+log on to postgres database
+
+sudo -u postgres psql cuppon
+
+postgres=# \l --> list database
+
+create database: CREATE DATABASE name;
+
+drop data base : DROP DATABASE name;
+
+Drop table : DROP TABLE user;
+
+
+Restart database: sudo service postgresql restart
+
+pip freeze > requirements.txt
+
+
+Postgres inside docker:
+docker exec -it 4971e6594ba6 bash
+psql -U  username
+see table : /dt
+
+change password:
+ \password postgres(user);
+
+
+IMPORT DUMP SQl DATA TO POSTGRES CONTAINER DOCKDER
+	got to db bash =docker-compose exec db
+	psql -U databasename
+	drop schema public cascade;
+	drop schema data cascade;
+	drop schema django cascade;
+	
+GOT TO DIRECTORY WHERE DUMP FILE EXISTS AND THEN RUN THE BELOW COMMAND
+	cat dumpnew5.sql | docker exec -i 8d3c78b1d1ed psql -U postgres
+
+
+connect to database on a remote host :
+	psql -U postgres -h 192.168.88.170 -p 5433

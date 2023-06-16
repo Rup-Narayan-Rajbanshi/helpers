@@ -1,0 +1,120 @@
+docker --version
+
+docker run redis 
+
+docker run python echo hello rup : display message for running python container
+
+docker run python ls : display files under python container
+
+docker ps : show running container
+
+docker ps --all : show running container as well as exited container
+
+docker create hello-world : create a docker container
+
+docker start -a dc2e7409aca3510fe63009679fc79316021369b56b0398432786265438059e95(container_id) : run the above container
+""  
+-a = display what is going on with the container.
+
+""
+
+docker run --publish 3000:80 nginx : run nginx in different port in local system.
+
+docker rm <container_id> ==> delete container
+
+docker rm $(docker ps -a -q -f status=exited) ==> deletes all containers that have a status of exited
+docker container prune ==> This will remove all stopped containers.
+docker kill $(docker ps -q) ==> kill all running containers
+
+docker logs <container_id> ==> for container logs
+
+docker stop <container_id>
+
+docker kill <container_id>
+
+docker exec -i -t <container_id> sh  ==> run another command in container shell
+""
+-i = attach with std in.
+-t = preety formatting
+
+""
+
+docker build .   ==> create container form docker file.
+
+docker images : list down docker images
+
+docker system prune -a :This will remove:
+                        - all stopped containers
+                        - all networks not used by at least one container
+                        - all images without at least one container associated to them
+                        - all build cache
+
+
+docker-compose logs -f ==> errors for docker-compose
+
+ Build the image: == docker-compose build
+ 
+ Once the image is built, run the container  ==  docker-compose up -d
+
+Docker File 
+example :
+# Specify the base image
+From alpine
+
+# Download and install dependencies
+
+RUN apk add --update redis
+
+# Set up the startup command.
+CMD ["redis-server"]
+
+It builts a container with id 
+then run 
+docker run container_id
+
+
+
+changes for project:
+-comment must be written above each command in docker file.
+
+-db connection.(database configuration from setting file)
+
+-volume mount
+
+
+DOCKER COMMANDS:
+
+ADD – Defines files to copy from the Host file system onto the Container
+ADD ./local/config.file /etc/service/config.file
+CMD – This is the command that will run when the Container starts
+CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT – Sets the default application used every time a Container is created from the Image. If used in conjunction with CMD, you can remove the application and just define the arguments there
+CMD Hello World!
+ENTRYPOINT echo
+ENV – Set/modify the environment variables within Containers created from the Image.
+ENV VERSION 1.0
+EXPOSE – Define which Container ports to expose
+EXPOSE 80
+FROM – Select the base image to build the new image on top of
+FROM ubuntu:latest
+LABEL maintainer – Optional field to let you identify yourself as the maintainer of this image. This is just a label (it used to be a dedicated Docker directive).
+LABEL maintainer=someone@xyz.xyz"
+RUN – Specify commands to make changes to your Image and subsequently the Containers started from this Image. This includes updating packages, installing software, adding users, creating an initial database, setting up certificates, etc. These are the commands you would run at the command line to install and configure your application. This is one of the most important dockerfile directives.
+RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
+USER – Define the default User all commands will be run as within any Container created from your Image. It can be either a UID or username
+USER docker
+VOLUME – Creates a mount point within the Container linking it back to file systems accessible by the Docker Host. New Volumes get populated with the pre-existing contents of the specified location in the image. It is specially relevant to mention is that defining Volumes in a Dockerfile can lead to issues. Volumes should be managed with docker-compose or “docker run” commands. Volumes are optional. If your application does not have any state (and most web applications work like this) then you don’t need to use volumes.
+VOLUME /var/log
+WORKDIR – Define the default working directory for the command defined in the “ENTRYPOINT” or “CMD” instructions
+WORKDIR /home
+
+
+Change Permissison :
+sudo chmod 777 Desktop/projects/web_scrap/content_aggregator/data/
+
+
+Check free space in Server:
+$ free -m
+
+
+

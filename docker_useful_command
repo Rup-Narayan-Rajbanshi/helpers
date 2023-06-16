@@ -1,0 +1,14 @@
+docker-compose exec server python manage.py createsuperuser
+
+docker-compose exec server python manage.py makemigrations
+
+docker-compose exec server python manage.py dumpdata leave.leave > leave.json
+
+docker-compose exec serve python manage.py dumpdata informal_update.informalaction > informal_actions.json
+
+
+docker-compose up
+
+docker-compose up build
+
+

@@ -1,0 +1,10 @@
+pytest --reuse-db -k "test_create_and_update"
+
+ip addr show
+
+give root permission to a folder
+ sudo chown -R $USER:$USER migrations
+ 
+ change group permissin:
+ 
+sudo chgrp rup foldername
